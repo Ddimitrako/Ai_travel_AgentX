@@ -333,7 +333,7 @@ def fetch_from_endpoint(query):
     # Construct the payload
     payload_data = [
         {
-            "departureDate": trip_info.get('departureDate', '2024-10-31'),
+            "departureDate": trip_info.get('departureDate', '2024-11-31'),
             "departureTime": trip_info.get('departureTime', ''),
             "originIdOrCode": origin_code,
             "destinationIdOrCode": destination_code,
@@ -441,26 +441,26 @@ def fetch_from_endpoint(query):
 
 def get_tools(product_files):
     # Combine content from all product files
-    if not os.path.isdir(product_files):
-        raise ValueError(f"{product_files} is not a valid directory")
-
-        # Combine content from all product files
-    combined_product_catalog = ""
-    print("Reading product files...")  # Debugging line
-    product_files = glob.glob(os.path.join(product_files, "*"))
-    for product_file in product_files:
-        print(f"Reading file: {product_file}")  # Debugging line
-        if not os.path.isfile(product_file):
-            print(f"File not found: {product_file}")  # Debugging line
-            continue  # Skip the missing file
-        try:
-            with open(product_file, "r") as f:
-                combined_product_catalog += f.read() + "\n"
-        except Exception as e:
-            print(f"Error reading file {product_file}: {e}")  # Debugging line
+    # if not os.path.isdir(product_files):
+    #     # raise ValueError(f"{product_files} is not a valid directory")
+    #     return False
+    #     # Combine content from all product files
+    # combined_product_catalog = ""
+    # print("Reading product files...")  # Debugging line
+    # product_files = glob.glob(os.path.join(product_files, "*"))
+    # for product_file in product_files:
+    #     print(f"Reading file: {product_file}")  # Debugging line
+    #     if not os.path.isfile(product_file):
+    #         print(f"File not found: {product_file}")  # Debugging line
+    #         continue  # Skip the missing file
+    #     try:
+    #         with open(product_file, "r") as f:
+    #             combined_product_catalog += f.read() + "\n"
+    #     except Exception as e:
+    #         print(f"Error reading file {product_file}: {e}")  # Debugging line
 
     # Initialize knowledge base with the combined content
-    knowledge_base = setup_knowledge_base(combined_product_catalog)
+    # knowledge_base = setup_knowledge_base(combined_product_catalog)
     tools = [
         Tool(
             name="EndpointFetch",
